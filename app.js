@@ -1,8 +1,10 @@
 class Converter {
     constructor() {
-        this.mcRegex = new RegExp("execute as @[a-zA-Z]\\[scores=\\{[a-zA-Z0-9_]+=(-?\\d+)\\}\\] at @s run playsound ([a-zA-Z0-9_.]+) @[a-zA-Z] ~\\s*~\\s*~ [\\d.]+ ([\\d.]+)(?:[\\d.]+)?");
+        this.mcRegex = new RegExp(
+            "execute as @[a-zA-Z]\\[scores=\\{[a-zA-Z0-9_]+=(-?\\d+)\\}\\](?: at @s)? run playsound ([a-zA-Z0-9_.]+) @[a-zA-Z] (?:[~^][+-]?\\d*\\.?\\d*)\\s*(?:[~^][+-]?\\d*\\.?\\d*)\\s*(?:[~^][+-]?\\d*\\.?\\d*) [\\d.]+ ([\\d.]+)(?:[\\d.]+)?"
+        );
         this.compressedRegex = new RegExp(
-            /^execute as @a(?:\[.*?\])? (?:at @s )?unless entity @s\[scores=\{.*?\}\](?: at @s)? run playsound ([a-zA-Z0-9_.]+) @[a-zA-Z] ~\s*~\s*~ [\d.]+ ([\d.]+)(?: [\d.]+)?$/
+            /^execute as @a(?:\[.*?\])? (?:at @s )?unless entity @s\[scores=\{.*?\}\](?: at @s)? run playsound ([a-zA-Z0-9_.]+) @[a-zA-Z] (?:[~^][+-]?\d*\.?\d*)\s*(?:[~^][+-]?\d*\.?\d*)\s*(?:[~^][+-]?\d*\.?\d*) [\d.]+ ([\d.]+)(?: [\d.]+)?$/
         );
         this.scoreExtractRegex = new RegExp(/([a-zA-Z0-9_]+)=!(-?\d+)/g);
     }
